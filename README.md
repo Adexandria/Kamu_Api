@@ -1,1 +1,8 @@
 # Kamu_Application
+
+## History
+Without an organised platform for classroom management, students can face a variety of problems. They may struggle to keep track of assignments and deadlines, leading to missed work and lower grades. Communication with instructors and classmates can be difficult, resulting in missed meetings or a lack of clarity about course material. Additionally, without a centralized platform for resources and materials, students may waste time searching for information they need to complete assignments or study for exams. Overall, an organised classroom management system like **KAMU** can greatly benefit students by providing a streamlined and efficient way to manage coursework and communicate with others in the class.
+
+**KAMU** was created by two intelligent people who wanted a better platform for interns or students. They envisioned **KAMU** as a comprehensive platform that would not only connect interns and students with potential opportunities but also provide them with valuable resources and support throughout their journey. With their expertise and passion, these creators aimed to bridge the gap between education and industry, empowering young individuals to thrive in their chosen fields.
+
+**KAMU** represents our commitment to embracing and celebrating our cultural heritage while also promoting a love for learning and studying. It reflects our belief that education should be rooted in our identity and language, empowering us to explore and excel in various fields of knowledge. Combining **Muta** (learning in Igbo) and **Kawe** (studying in Yoruba) We were able to derive **KAMU**.
