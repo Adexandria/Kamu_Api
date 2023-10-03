@@ -1,4 +1,4 @@
-# Kamu_Application
+# Kamu_Api
 
 ## History
 Without an organised platform for classroom management, students can face a variety of problems. They may struggle to keep track of assignments and deadlines, leading to missed work and lower grades. Communication with instructors and classmates can be difficult, resulting in missed meetings or a lack of clarity about course material. Additionally, without a centralized platform for resources and materials, students may waste time searching for information they need to complete assignments or study for exams. Overall, an organised classroom management system like **KAMU** can greatly benefit students by providing a streamlined and efficient way to manage coursework and communicate with others in the class.
