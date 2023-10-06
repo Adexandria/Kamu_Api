@@ -2,6 +2,9 @@
 
 namespace KAMU.API.Infrastructure.Database.Mappings
 {
+    /// <summary>
+    /// Maps the properties of a student object to the columns of a database table
+    /// </summary>
     public class StudentMapping : BaseEntityMapping<Student>
     {
         public StudentMapping()

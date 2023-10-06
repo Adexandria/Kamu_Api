@@ -2,6 +2,9 @@
 
 namespace KAMU.API.Infrastructure.Database.Mappings
 {
+    /// <summary>
+    /// This class maps the properties of an instructor object to its columns in the database
+    /// </summary>
     public class InstructorMapping : BaseEntityMapping<Instructor>
     {
         public InstructorMapping()
