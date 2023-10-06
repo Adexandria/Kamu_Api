@@ -17,7 +17,7 @@ namespace KAMU.API.Infrastructure.Database.Mappings
             Map(s => s.PasswordHash).Not.Nullable();
             HasMany(s => s.LearningPaths);
             HasMany(s => s.Submissions);
-            References(s => s.Organisation).Cascade.SaveUpdate();
+            References(s => s.Organisation);
         }
     }
 }
