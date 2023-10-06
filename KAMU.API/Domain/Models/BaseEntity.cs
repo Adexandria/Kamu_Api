@@ -1,6 +1,6 @@
 ﻿namespace KAMU.API.Domain.Models
 {
-    public class BaseEntity
+    public class BaseEntity : IEntity
     {
         public Guid Id { get; set; }
     }
