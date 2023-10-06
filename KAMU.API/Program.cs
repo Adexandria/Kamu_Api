@@ -1,5 +1,5 @@
 using KAMU.API.Infrastructure.Extensions;
-using KAMU.API.Infrastructure.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var appSettings = builder.Configuration.ExtractAppConfigurations();

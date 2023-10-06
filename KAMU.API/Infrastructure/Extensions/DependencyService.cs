@@ -1,8 +1,8 @@
-﻿using ISession = NHibernate.ISession;
-using KAMU.API.Infrastructure.Database;
+﻿using KAMU.API.Infrastructure.Database;
+using KAMU.API.Infrastructure.Services.Security;
 using KAMU.API.Infrastructure.Utilities;
 
-namespace KAMU.API.Infrastructure.Services
+namespace KAMU.API.Infrastructure.Extensions
 {
     /// <summary>
     /// A service to register all dependencies in the application
@@ -16,7 +16,8 @@ namespace KAMU.API.Infrastructure.Services
         /// <param name="appSettings">Manages application settings</param>
         public static void SetUpDependencies(this IServiceCollection serviceCollection, ApplicationSettings appSettings)
         {
-            serviceCollection.AddSingleton<ISession>((_) => new SessionFactory(appSettings.ConnectionString).GetSession());
+            serviceCollection.AddSingleton((_) => new SessionFactory(appSettings.ConnectionString).GetSession());
+            serviceCollection.AddScoped<IPasswordManager, PasswordManager>();
         }
     }
 }
