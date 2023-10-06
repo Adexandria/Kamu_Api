@@ -12,7 +12,7 @@ namespace KAMU.API.Infrastructure.Extensions
     public static class DependencyService
     {
         /// <summary>
-        /// Set up dependencies using the service collection and application settings
+        /// Sets up dependencies using the service collection and application settings
         /// </summary>
         /// <param name="serviceCollection">Specifies the contract for a collection of service descriptors</param>
         /// <param name="appSettings">Manages application settings</param>
@@ -22,6 +22,10 @@ namespace KAMU.API.Infrastructure.Extensions
             serviceCollection.AddScoped<IPasswordManager, PasswordManager>();
         }
 
+        /// <summary>
+        /// Sets up policy configuration
+        /// </summary>
+        /// <param name="serviceCollection"></param>
         public static void SetUpPolicy(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddAuthorization(o =>
