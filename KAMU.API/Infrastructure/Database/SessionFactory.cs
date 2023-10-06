@@ -7,8 +7,18 @@ using ISession = NHibernate.ISession;
 
 namespace KAMU.API.Infrastructure.Database
 {
+    /// <summary>
+    /// Manages the sessions
+    /// </summary>
     public class SessionFactory : ISessionBuilder
     {
+        /// <summary>
+        /// A Constructor.
+        /// 
+        /// It sets up the session configuration.
+        /// </summary>
+        /// <param name="connectionString">A connection string</param>
+        /// <exception cref="ArgumentNullException">If the connection string is empty or null</exception>
         public SessionFactory(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
@@ -16,11 +26,21 @@ namespace KAMU.API.Infrastructure.Database
 
             _sessionFactory = BuildSessionFactory(connectionString);
         }
+
+        /// <summary>
+        /// Builds the session factory
+        /// </summary>
+        /// <returns>Session</returns>
         public ISession GetSession()
         {
            return _sessionFactory.OpenSession();
         }
 
+        /// <summary>
+        /// Builds the session configuration
+        /// </summary>
+        /// <param name="connectionString">A connection string</param>
+        /// <returns>ISession Factory</returns>
         private ISessionFactory BuildSessionFactory(string connectionString)
         {
             FluentConfiguration configuration = Fluently.Configure()
@@ -35,6 +55,9 @@ namespace KAMU.API.Infrastructure.Database
             return configuration.BuildSessionFactory();
         }
 
+        /// <summary>
+        /// Manages the session configuration 
+        /// </summary>
         private readonly ISessionFactory _sessionFactory;
     }
 }
