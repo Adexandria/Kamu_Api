@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using KAMU.API.Domain.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace KAMU.API.Infrastructure.Services.Security
 {
@@ -13,9 +14,9 @@ namespace KAMU.API.Infrastructure.Services.Security
         /// <typeparam name="T">Identity user</typeparam>
         /// <param name="password">Plain password</param>
         /// <returns>Hashed password</returns>
-        public string GetHashedPassword<T>(string password) where T : IdentityUser
+        public string GetHashedPassword(string password)
         {
-            return new PasswordHasher<T>().HashPassword(null, password);
+            return new PasswordHasher<UserIdentity>().HashPassword(null, password);
         }
 
         /// <summary>
@@ -25,9 +26,9 @@ namespace KAMU.API.Infrastructure.Services.Security
         /// <param name="hashedPassword">Hashed password</param>
         /// <param name="providedPassword">Plain password provided</param>
         /// <returns>Validation result</returns>
-        public bool VerifyPassword<T>(string hashedPassword, string providedPassword) where T : IdentityUser
+        public bool VerifyPassword(string hashedPassword, string providedPassword)
         {
-            return new PasswordHasher<T>().VerifyHashedPassword(null, hashedPassword, providedPassword) 
+            return new PasswordHasher<UserIdentity>().VerifyHashedPassword(null, hashedPassword, providedPassword) 
                 == PasswordVerificationResult.Success;
         }
     }

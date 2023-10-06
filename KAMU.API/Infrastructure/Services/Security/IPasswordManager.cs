@@ -13,7 +13,7 @@ namespace KAMU.API.Infrastructure.Services.Security
         /// <typeparam name="T">Identity user</typeparam>
         /// <param name="password">Plain password</param>
         /// <returns>Hashed password</returns>
-        string GetHashedPassword<T>(string password) where T: IdentityUser;
+        string GetHashedPassword(string password);
 
         /// <summary>
         /// Verifies provided password with hashed password
@@ -22,6 +22,6 @@ namespace KAMU.API.Infrastructure.Services.Security
         /// <param name="hashedPassword">Hashed password</param>
         /// <param name="providedPassword">Plain password provided</param>
         /// <returns>Validation result</returns>
-        bool VerifyPassword<T>(string hashedPassword, string providedPassword) where T : IdentityUser;
+        bool VerifyPassword(string hashedPassword, string providedPassword);
     }
 }
