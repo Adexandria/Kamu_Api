@@ -47,7 +47,7 @@ namespace KAMU.API.Infrastructure.Database
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString)
                 .ShowSql()
                 .FormatSql())
-                .Mappings(m => m.FluentMappings.AddFromAssembly(typeof(BaseEntityMapping).Assembly))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(typeof(SuperAdminMapping).Assembly))
                 .ExposeConfiguration(cfg =>
                 {
                     new SchemaUpdate(cfg).Execute(true, true);
