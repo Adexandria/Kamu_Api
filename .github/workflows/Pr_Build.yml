@@ -3,6 +3,8 @@ name: Build .NET
 on:
   pull_request:
     branches: [ "main" ]
+env:
+ project_file: KAMU.API/KAMU.API.csproj
 
 jobs:
   build:
@@ -16,6 +18,6 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet {{env.project_file}} restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build {{env.project_file}} --no-restore
