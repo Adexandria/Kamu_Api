@@ -10,7 +10,7 @@ namespace KAMU.API.Infrastructure.Services.Authorisation
         /// <summary>
         /// A constructor
         /// </summary>
-        public HasRoleAttribute():base(Policy)
+        public HasRoleAttribute():base(POLICY)
         {
 
         }
@@ -23,6 +23,6 @@ namespace KAMU.API.Infrastructure.Services.Authorisation
         /// <summary>
         /// Policy name
         /// </summary>
-        public const string Policy = "HasRole";
-    }
+        public const string POLICY = "HasRole";
+   }
 }

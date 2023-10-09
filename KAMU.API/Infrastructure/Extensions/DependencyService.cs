@@ -30,7 +30,7 @@ namespace KAMU.API.Infrastructure.Extensions
         {
             serviceCollection.AddAuthorization(o =>
             {
-                o.AddPolicy(HasRoleAttribute.Policy, p =>
+                o.AddPolicy(HasRoleAttribute.POLICY, p =>
                 {
                     p.Requirements.Add(new HasRoleAuthorisationRequirement());
                     p.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
