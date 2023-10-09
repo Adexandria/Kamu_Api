@@ -1,6 +1,12 @@
-﻿namespace KAMU.API.Infrastructure.Extensions
+﻿using System.Runtime.CompilerServices;
+
+namespace KAMU.API.Infrastructure.Extensions
 {
-    public class StringExtensions
+    public static class StringExtensions
     {
+        public static bool IsValidText(this string input)
+        {
+            return !string.IsNullOrEmpty(input) || !string.IsNullOrWhiteSpace(input);
+        }
     }
 }
