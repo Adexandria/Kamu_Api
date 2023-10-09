@@ -1,6 +1,8 @@
 ﻿using KAMU.API.Infrastructure.Database;
+using KAMU.API.Infrastructure.Services.Authorisation;
 using KAMU.API.Infrastructure.Services.Security;
 using KAMU.API.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace KAMU.API.Infrastructure.Extensions
 {
@@ -10,7 +12,7 @@ namespace KAMU.API.Infrastructure.Extensions
     public static class DependencyService
     {
         /// <summary>
-        /// Set up dependencies using the service collection and application settings
+        /// Sets up dependencies using the service collection and application settings
         /// </summary>
         /// <param name="serviceCollection">Specifies the contract for a collection of service descriptors</param>
         /// <param name="appSettings">Manages application settings</param>
@@ -18,6 +20,22 @@ namespace KAMU.API.Infrastructure.Extensions
         {
             serviceCollection.AddSingleton((_) => new SessionFactory(appSettings.ConnectionString).GetSession());
             serviceCollection.AddScoped<IPasswordManager, PasswordManager>();
+        }
+
+        /// <summary>
+        /// Sets up policy configuration
+        /// </summary>
+        /// <param name="serviceCollection"></param>
+        public static void SetUpPolicy(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddAuthorization(o =>
+            {
+                o.AddPolicy(HasRoleAttribute.POLICY, p =>
+                {
+                    p.Requirements.Add(new HasRoleAuthorisationRequirement());
+                    p.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
+                });
+            });
         }
     }
 }
