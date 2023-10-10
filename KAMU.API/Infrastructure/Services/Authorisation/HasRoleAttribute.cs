@@ -10,9 +10,9 @@ namespace KAMU.API.Infrastructure.Services.Authorisation
         /// <summary>
         /// A constructor
         /// </summary>
-        public HasRoleAttribute():base(POLICY)
+        public HasRoleAttribute(params Role[] roles):base(POLICY)
         {
-
+            Roles = roles;
         }
 
         /// <summary>
