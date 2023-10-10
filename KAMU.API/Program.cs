@@ -10,8 +10,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.SetUpDependencies(appSettings);
-builder.Services.SetUpPolicy();
+builder.Services.AddSecurityConfiguration(appSettings.TokenSecret);
+builder.Services.SwaggerConfiguration();
+builder.Services.SeedDatabase();
+
 
 var app = builder.Build();
 
