@@ -4,35 +4,26 @@ using NHibernate.Linq;
 
 namespace KAMU.API.Infrastructure.Repositories
 {
-    public class SuperAdminRepository : Repository, ISuperAdminRepository
+    /// <summary>
+    /// Manages the activities of super admin
+    /// </summary>
+    public class SuperAdminRepository : Repository<SuperAdmin>, ISuperAdminRepository
     {
+        /// <summary>
+        /// A constructor
+        /// </summary>
+        /// <param name="session">Manages the transactions in a database</param>
         public SuperAdminRepository(NHibernate.ISession session) : base(session)
         {
         }
 
-        public async Task AddAsync(SuperAdmin entity)
+        /// <summary>
+        /// Gets the default super admin
+        /// </summary>
+        /// <returns>Super admin</returns>
+        public async Task<SuperAdmin> GetDefaultSuperAdmin()
         {
-            await _session.SaveOrUpdateAsync(entity);
-        }
-
-        public async Task DeleteAsync(SuperAdmin entity)
-        {
-            await _session.DeleteAsync(entity);
-        }
-
-        public async Task<bool> ExistsAsync(string email)
-        {
-            return await _session.Query<SuperAdmin>().AnyAsync(s => s.Email.ToLower() == email.ToLower());
-        }
-
-        public async Task<SuperAdmin> GetUserByEmailAsync(string email)
-        {
-            return await _session.Query<SuperAdmin>().Where(s => s.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
-        }
-
-        public async Task UpdateAsync(SuperAdmin entity)
-        {
-            await _session.UpdateAsync(entity);
+            return await _session.Query<SuperAdmin>().FirstOrDefaultAsync();
         }
     }
 }
