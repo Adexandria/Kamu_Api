@@ -2,7 +2,11 @@
 {
     public class Person : UserIdentity
     {
-        public Organisation Organisation { get; set; }
-        public IList<LearningPath> LearningPaths { get; set; } = new List<LearningPath>();
+        public Person()
+        {
+            LearningPaths = new List<LearningPath>();
+        }
+        public virtual Organisation Organisation { get; set; }
+        public virtual IList<LearningPath> LearningPaths { get; set; }
     }
 }

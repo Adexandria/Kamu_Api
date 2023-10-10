@@ -2,6 +2,6 @@
 {
     public class BaseEntity : IEntity
     {
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
     }
 }
