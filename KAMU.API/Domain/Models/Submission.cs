@@ -2,6 +2,6 @@
 {
     public class Submission : BaseEntity
     {
-        public Student Students { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

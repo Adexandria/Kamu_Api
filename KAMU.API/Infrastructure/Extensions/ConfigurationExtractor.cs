@@ -18,6 +18,27 @@ namespace KAMU.API.Infrastructure.Extensions
         }
 
         /// <summary>
+        /// Extracts token secrets
+        /// </summary>
+        /// <param name="configuration">Represents a set of key/value application configuration properties.</param>
+        /// <returns>Token Secrets</returns>
+        private static TokenSecret ExtractTokenSecrets(IConfiguration configuration)
+        {
+            return configuration.GetSection("ApplicationTokenSecret").Get<TokenSecret>();
+        }
+
+
+        /// <summary>
+        /// Extracts rge deployment configuration
+        /// </summary>
+        /// <param name="configuration">Represents a set of key/value application configuration properties.</param>
+        /// <returns>Deployment Configuration</returns>
+        private static DeploymentConfiguration ExtractDeploymentConfiguration(IConfiguration configuration)
+        {
+            return configuration.GetSection("DeploymentConfiguration").Get<DeploymentConfiguration>();
+        }
+
+        /// <summary>
         ///  Gets the application settings
         /// </summary>
         /// <param name="configuration">Represents a set of key/value application configuration properties.</param>
@@ -26,7 +47,9 @@ namespace KAMU.API.Infrastructure.Extensions
         {
             return new ApplicationSettings
             {
-                ConnectionString = ExtractConnectionString(configuration)
+                ConnectionString = ExtractConnectionString(configuration),
+                TokenSecret = ExtractTokenSecrets(configuration),
+                DeploymentConfiguration = ExtractDeploymentConfiguration(configuration)
             };
         }
     }

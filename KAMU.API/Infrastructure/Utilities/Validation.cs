@@ -13,7 +13,7 @@ namespace KAMU.API.Infrastructure.Utilities
         /// </summary>
         public Validation()
         {
-            Result.Successful = true;
+            Result = ActionResponse.Successful();
            
         }
 
@@ -62,7 +62,7 @@ namespace KAMU.API.Infrastructure.Utilities
         /// <returns>the validation result</returns>
         public Validation IsValidGuid(Guid id, string error)
         {
-            Validate(id.ToString().Length == 36, error);
+            Validate(id != Guid.Empty, error);
             return this;
         }
 
@@ -121,21 +121,23 @@ namespace KAMU.API.Infrastructure.Utilities
         /// <summary>
         /// modifies response error list based on the success or failure of a condition
         /// </summary>
-        /// <param name="pass">condition to check</param>
+        /// <param name="passValidation">condition to check</param>
         /// <param name="error">an error message for failure</param>
-        private void Validate(bool pass, string error)
+        private void Validate(bool passValidation, string error)
         {
-            if(!pass && Result.Successful)
+            if(!passValidation && Result.IsSuccessful)
             {
-                Response.ValidationFailure(Result, error);
+                Result = ActionResponse.Failed(error,StatusCodes.Status400BadRequest);
             }
-            else if (!pass && Result.NotSuccessful)
+            else if (!passValidation && Result.NotSuccessful)
+            {
                 Result.AddError(error);
+            }
 
         }
         /// <summary>
         /// The response result from a validation
         /// </summary>
-        public Response Result => new Response();
+        public ActionResponse Result;
     }
 }
