@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+    - name: Restore package
+      run: nuget restore
     - name: Publish app
       run: dotnet publish -c Release --no-build -o ${{env.output_file}}
     - name: Upload Build Artifact
