@@ -6,7 +6,7 @@ on:
 env:
  project_file: KAMU.API/KAMU.API.csproj
  output_file: bin/Release/net6.0
- project_url: https://kamu-api.azurewebsites.net/
+ project_url: https://kamu-api.azurewebsites.net/swagger/index.html
 
 jobs:
   build:
