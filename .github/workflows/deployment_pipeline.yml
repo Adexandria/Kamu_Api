@@ -5,7 +5,7 @@ on:
     branches: main
 env:
  project_file: KAMU.API/KAMU.API.csproj
-
+ output_file: bin/Release/net6.0
 jobs:
   build:
 
@@ -24,12 +24,12 @@ jobs:
     - name: Build
       run: dotnet build ${{env.project_file}} --no-restore -c Release
     - name: Publish app
-      run: dotnet publish -c Release --no-build -o ${{env.DOTNET_ROOT}}/kamuApi
+      run: dotnet publish -c Release --no-build -o ${{env.output_file}}
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v3
       with:
         name: .kamuApp
-        path: ${{env.DOTNET_ROOT}}/kamuApi
+        path: ${{env.output_file}}
 
   deploy:
     runs-on: ubuntu-latest
