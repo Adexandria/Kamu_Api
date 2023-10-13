@@ -1,0 +1,45 @@
+name: Build and Deploy KAMU API
+
+on:
+  push:
+    branches: main
+env:
+ project_file: KAMU.API/KAMU.API.csproj
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ${{env.project_file}}
+    - name: Build
+      run: dotnet build ${{env.project_file}} --no-restore -c Release
+    - name: Publish app
+      run: dotnet publish -c Release --no-build -o ${{env.DOTNET_ROOT}}/kamuApi
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: .kamuApp
+        path: ${{env.DOTNET_ROOT}}/kamuApi
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: .kamuApp
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'kamu-api'
+          publish-profile: ${{secrets.KAMU_API_PUBLISH_PROFILE}}
+          package: .
