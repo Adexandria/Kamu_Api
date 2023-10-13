@@ -17,8 +17,10 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+    - name: Restore package
+      run: nuget restore
     - name: Publish app
-      run: dotnet publish -c Release --no-build -o ${{env.output_file}}
+      run: dotnet publish -c Release -o ${{env.output_file}}
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v3
       with:
@@ -28,6 +30,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    environment:
+            name: production
+            url: ${{env.staging-url}}
     steps:
       - name: Download Build Artifact
         uses: actions/download-artifact@v3
