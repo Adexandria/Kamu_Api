@@ -19,6 +19,8 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore ${{env.project_file}}
+    - name: Restore Nuget packages
+      run: nuget restore
     - name: Build
       run: dotnet build ${{env.project_file}} --no-restore -c Release
     - name: Publish app
