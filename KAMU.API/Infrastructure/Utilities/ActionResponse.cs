@@ -102,7 +102,8 @@
             {
                 StatusCode = code,
                 IsSuccessful = false,
-                NotSuccessful = true
+                NotSuccessful = true,
+                Errors = new List<string>()
             };
         }
 
